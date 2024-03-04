@@ -7,6 +7,14 @@
     background-position: center;
 }
 
+.container__botao:checked~.container__rotulo>.cabecalho__menu-hamburguer {
+    background-image: url("../img/Menu\ Aberto.svg");
+}
+
+.container__botao:checked~.container__rotulo {
+    background: var(--azul-degrade);
+}
+
 .cabecalho {
     background-color: var(--branco);
     display: flex;
@@ -54,19 +62,10 @@
     text-transform: uppercase;
 }
 
+.container__titulo,
+.opcoes,
+.container__texto,
 .container__botao {
-    display: none;
-}
-
-.container__titulo {
-    display: none;
-}
-
-.opcoes {
-    display: none;
-}
-
-.container__texto {
     display: none;
 }
 
@@ -92,7 +91,7 @@
     }
 
     .opcoes__item {
-        padding: 0 1em;
+        padding: 2em 1em;
         text-transform: uppercase;
     }
 
@@ -116,6 +115,22 @@
 
     .opcoes__botao {
         display: none;
+    }
+
+    .opcoes__botao:checked~.opcoes__rotulo>.opcoes__item {
+        background: var(--azul-degrade);
+        color: var(--branco);
+    }
+
+    .lista-menu__item:hover {
+        background: var(--azul-degrade);
+    }
+
+    .lista-menu__item:hover>.lista-menu__link {
+        -webkit-text-fill-color: var(--branco);
+        /*Precisou usar o webkit, porque a antiga cor de fundo que eu coloquei era o azul-degrade e ele precisava do web kit para poder funcionar direito, porque eu defini um tipo de background e associei ele a fonte, pode procurar no código, que vai achar.*/
+        text-decoration: none;
+        /*precisei usar o text-decoration agora, porque no webkit antigo ele já fazia isso automático.*/
     }
 }
 
