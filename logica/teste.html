@@ -1,12 +1,24 @@
 <meta charset="UTF-8">
 <script>
-    var anoCopa = 1930;
+    var login = "tiago";
+    var senha = 1234;
 
-    while (anoCopa < 1950) {
-        document.write("<br>")
-        document.write(anoCopa);
-        anoCopa += 4;
+    var tentativasMaximas = 3;
+    var tentativaAtual = 0;
+
+    while (tentativaAtual < tentativasMaximas) {
+        var loginInformado = prompt("Digite o login: ");
+        var senhaInformada = parseInt(prompt("Digite a senha: "));
+
+        if (loginInformado == login && senhaInformada == senha) {
+            alert("Login realizado com sucesso!");
+            tentativaAtual = tentativasMaximas;
+        } else {
+            alert("Login invalido");
+            tentativaAtual++
+        }
     }
-
+    tentativaAtual = 0;
+    console.log(tentativaAtual);
     document.write("FIM");
 </script>
