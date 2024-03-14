@@ -14,9 +14,11 @@ const objetoPessoa = {
 objetoPessoa.enderecos.push({
     rua: "Dona Clotilde",
     numero: "71",
-    complemento: "Vila senhor barriga"
+    complemento: ""
 })
 
+const enderecosComComplemento = objetoPessoa.enderecos.filter((enderecos) => {
+    return enderecos.complemento;
+});
 
-console.log(objetoPessoa.enderecos);
-console.log(objetoPessoa.enderecos[1]);
+console.log(enderecosComComplemento);
