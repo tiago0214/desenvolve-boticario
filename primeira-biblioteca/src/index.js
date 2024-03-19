@@ -9,7 +9,7 @@ function extrairLinks(texto) {
     const regex = /\[([^[\]]*?)\]\((https?:\/\/[^\s?#.].[^\s]*\))/gm;
     const capturas = [...texto.matchAll(regex)];
     const resultado = capturas.map((captura) => ({ [captura[1]]: captura[2] }));
-    return resultado;
+    return resultado.length !== 0 ? resultado : "Não há links";
 }
 
 //async / await
