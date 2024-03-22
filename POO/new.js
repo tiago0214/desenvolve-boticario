@@ -28,13 +28,18 @@
 
 
 const user = {
+    init: function (nome, email) {
+        this.nome = nome;
+        this.emai = email;
+    },
     exibirInfo: function (nome) {
-        console.log(nome)
+        console.log(this.nome) //se eu utilizar o this, mesmo que eu passo o parâmetro ele não vai usar.
     }
 }
 
 const novoUser = Object.create(user);
-//uma forma de contonar, para ter uma função construtora. desde o inicio.
+novoUser.init("Shara", 27);
+//uma forma de contonar, para ter uma função construtora. desde o inicio. é utilizar uma função que geralmente chamamos de init
 
 
 
