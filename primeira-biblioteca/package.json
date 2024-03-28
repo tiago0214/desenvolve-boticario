@@ -1,8 +1,8 @@
 {
-  "name": "2708-node-lib-md",
+  "name": "verifica-links-md",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Verifica os links de um arquivo markdown",
+  "main": "cli.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alura-cursos/2708-node-lib-md.git"
+    "url": "git+https://github.com/tiago0214/desenvolve-boticario/tree/main/primeira-biblioteca"
   },
   "keywords": [],
   "author": "",

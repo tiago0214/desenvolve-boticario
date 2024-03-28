@@ -12,19 +12,41 @@ export default class User {
         this.#ativo = ativo
     }
 
-    #montaObj() {
-        return ({
-            nome: this.#nome,
-            email: this.#email,
-            nascimento: this.#nascimento,
-            role: this.#role,
-            ativo: this.#ativo
-        })
+    get nome() {
+        return this.#nome;
+    };
+    get email() {
+        return this.#email;
+    };
+    get nascimento() {
+        return this.#nascimento;
+    };
+    get role() {
+        return this.#role;
+    };
+    get ativo() {
+        return this.#ativo;
+    };
+    set nome(novoNome) {
+        if (novoNome === "") {
+            throw new Error("Campo vazio");
+        }
+        this.#nome = novoNome;
     }
 
+
+    // #montaObj() {
+    //     return ({
+    //         nome: this.#nome,
+    //         email: this.#email,
+    //         nascimento: this.#nascimento,
+    //         role: this.#role,
+    //         ativo: this.#ativo
+    //     })
+    // }
+
     exibirInfo() {
-        const meuOb = this.#montaObj();
-        return this.#nome;
+        return `${this.nome},${this.email},${this.nascimento},${this.role},${this.ativo}`;
     }
 }
 
