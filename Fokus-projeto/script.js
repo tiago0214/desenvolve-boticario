@@ -75,9 +75,14 @@ function alteraContexto(contexto) {
     }
 }
 
-const decrementarContador = () => {
-    if (contadorRegressivoMinutos === 0) {
+const contagemRegressiva = () => {
+    if (contadorRegressivoMinutos == 0) {
         beep.play();
+        const focoAtivo = html.getAttribute('data-contexto') == 'foco';
+        if (focoAtivo) {
+            const evento = new CustomEvent('FocoFinalizado');
+            document.dispatchEvent(evento);
+        }
         zerar();
         alert('Contagem terminou');
         return;
@@ -98,7 +103,7 @@ function iniciarOuPausar() {
     imagemBt.setAttribute('src', '/imagens/pause.png');
     iniciarOuPausarBt.textContent = 'Pausar';
     play.play();
-    intervaloId = setInterval(decrementarContador, 1000);
+    intervaloId = setInterval(contagemRegressiva, 1000);
 }
 
 function zerar() {
