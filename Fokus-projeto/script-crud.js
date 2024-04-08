@@ -1,5 +1,8 @@
 const btnAdicionarTarefa = document.querySelector('.app__button--add-task');
 const formAdicionarTarefa = document.querySelector('.app__form-add-task');
+const btnCancelar = document.querySelector('.app__form-footer__button--cancel');
+const paragrafoDescricaoTarefa = document.querySelector('.app__section-active-task-description');
+
 const textArea = document.querySelector('.app__form-textarea');
 const ulTarefa = document.querySelector('.app__section-task-list');
 
@@ -7,6 +10,11 @@ const tarefas = JSON.parse(localStorage.getItem('tarefas')) || []
 
 function atualizarTarefas() {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+function limparFormulario() {
+    textArea.value = '';
+    formAdicionarTarefa.classList.add('hidden');
 }
 
 //retorna uma tarefa
@@ -31,12 +39,14 @@ function criarElementoTarefa(tarefa) {
 
     const botao = document.createElement('button');
     botao.classList.add('app_button-edit');
+
     botao.onclick = () => {
         const novaDescricao = prompt('Qual é o novo nome da tarefa?');
-        paragrafo.textContent = novaDescricao;
-
-        tarefa.descricao = novaDescricao;
-        atualizarTarefas();
+        if (novaDescricao) {
+            paragrafo.textContent = novaDescricao;
+            tarefa.descricao = novaDescricao;
+            atualizarTarefas();
+        }
     }
 
     const imagemBotao = document.createElement('img');
@@ -48,12 +58,25 @@ function criarElementoTarefa(tarefa) {
 
     botao.append(imagemBotao);
 
+    li.onclick = () => {
+        paragrafoDescricaoTarefa.textContent = tarefa.descricao;
+        document.querySelectorAll('.app__section-task-list-item-active')
+            .forEach(element => {
+                element.classList.remove('app__section-task-list-item-active');
+            })
+
+        li.classList.add('app__section-task-list-item-active');
+    }
+
     return li;
 }
 
 btnAdicionarTarefa.addEventListener('click', () => {
     formAdicionarTarefa.classList.toggle('hidden');
 });
+
+//limpar tarefa
+btnCancelar.addEventListener('click', limparFormulario)
 
 //salva no localStorage
 formAdicionarTarefa.addEventListener('submit', (event) => {
