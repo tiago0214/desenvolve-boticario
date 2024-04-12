@@ -1,10 +1,28 @@
 async function listaVideos() {
     const conexao = await fetch('http://localhost:3000/videos');
     const conexaoConvertida = await conexao.json();
-    console.log(conexaoConvertida);
+    return conexaoConvertida
 }
 
-listaVideos()
-// export const conectaApi = {
-//     listaVideos
-// }
+async function criaVideo(titulo, descricao, url, imagem) {
+    const conexao = await fetch('http://localhost:3000/videos', {
+        method: "POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            titulo: titulo,
+            descricao: `${descricao} mil visuzalizações`,
+            url: url,
+            imagem: imagem
+        })
+    });
+
+    const conexaoConvertida = await conexao.json();
+    return conexaoConvertida;
+}
+
+export const conectaApi = {
+    listaVideos,
+    criaVideo
+}
