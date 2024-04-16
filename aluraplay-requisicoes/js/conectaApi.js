@@ -1,14 +1,14 @@
 async function listaVideos() {
-    const conexao = await fetch('http://localhost:3000/videos');
+    const conexao = await fetch('https://661d087de7b95ad7fa6bec28.mockapi.io/videos');
     const conexaoConvertida = await conexao.json();
     return conexaoConvertida
 }
 
 async function criaVideo(titulo, descricao, url, imagem) {
-    const conexao = await fetch('http://localhost:3000/videos', {
+    const conexao = await fetch('https://661d087de7b95ad7fa6bec28.mockapi.io/videos', {
         method: "POST",
         headers: {
-            "content-type": "application/json"
+            "Content-type": "application/json"
         },
         body: JSON.stringify({
             titulo: titulo,
@@ -18,11 +18,24 @@ async function criaVideo(titulo, descricao, url, imagem) {
         })
     });
 
+    if (!conexao.ok) {
+        throw new Error("Não foi possivel enviar o video");
+    }
+
     const conexaoConvertida = await conexao.json();
     return conexaoConvertida;
 }
 
+async function buscaVideo(termoDeBusca) {
+    const conexao = await fetch(`https://661d087de7b95ad7fa6bec28.mockapi.io/videos?search=${termoDeBusca}`);
+    const conexaoConvertida = conexao.json();
+
+    return conexaoConvertida;
+}
+
+
 export const conectaApi = {
     listaVideos,
-    criaVideo
+    criaVideo,
+    buscaVideo
 }
