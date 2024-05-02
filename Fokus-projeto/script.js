@@ -29,6 +29,7 @@ musicaFocoInput.addEventListener('change', () => {
 })
 
 focuBt.addEventListener('click', () => {
+    contadorRegressivoMinutos = 1500;
     alteraContexto('foco');
     focuBt.classList.add('active');
 })
