@@ -29,6 +29,52 @@ class UsuarioService {
     }
 
   }
+
+  async listarUsuarios (){
+    const usuarios = await dataBase.usuarios.findAll();
+
+    return usuarios;
+  }
+
+  async listarPorId(id){
+    const usuarioEncontrado = await dataBase.usuarios.findOne({
+      where:{
+        id:id
+      }
+    })
+    console.log(usuarioEncontrado);
+
+    if(!usuarioEncontrado){
+      throw new Error('Usuario não encontrado');
+    }
+
+    return usuarioEncontrado
+  }
+
+  async atualizarUsuario(dto){
+    const usuarioSelecionado = await this.listarPorId(dto.id);
+    try{
+      usuarioSelecionado.nome = dto.nome;
+      usuarioSelecionado.email = dto.email;
+
+      await usuarioSelecionado.save();
+      return usuarioSelecionado;
+    }catch(error){
+      throw new Error('Erro ao editar o usuário');
+    }
+  }
+
+  async deletarUsuario(id){
+    try{
+      await dataBase.usuarios.destroy({
+        where:{
+          id:id
+        }
+      })
+    }catch(error){
+      throw new Error('Erro ao tentar deletar o usuário!');
+    }
+  }
 }
 
 module.exports = UsuarioService;

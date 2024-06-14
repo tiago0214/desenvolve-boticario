@@ -5,9 +5,9 @@ const router = Router();
   
 router
   .post('/usuarios',UsuarioController.cadastrar)
-  .get('/usuarios')
-  .get('usuarios/id/:id')
-  .put('usuarios/id/:id')
-  .delete('usuarios/id/:id')
+  .get('/usuarios',UsuarioController.listasTodosOsUsuarios)
+  .get('/usuarios/id/:id',UsuarioController.listarUsuarioPorId)
+  .put('/usuarios/id/:id',UsuarioController.atualizarUsuario)
+  .delete('/usuarios/id/:id',UsuarioController.deletarUsuario);
 
 module.exports = router;
