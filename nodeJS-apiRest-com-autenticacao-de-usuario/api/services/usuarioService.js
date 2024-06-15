@@ -12,7 +12,8 @@ class UsuarioService {
 
     if(usuario){
       throw new Error("Usuário já cadastrado!");
-    }
+    };
+    
     try {
       const senhaHash = await hash.hash(dto.senha,8);
   
