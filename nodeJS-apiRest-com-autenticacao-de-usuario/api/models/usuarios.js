@@ -9,7 +9,18 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      usuarios.belongsToMany(models.roles,{
+        through: models.usuarios_roles,
+        as: 'usuario_roles',
+        foreignKey: 'usuario_id' 
+      });
+
+      usuarios.belongsToMany(models.permissoes,{
+        through: models.usuarios_permissoes,//acredito que seja onde esta sendo concretizado o relacionamento//ou seja
+        //o relacionamento entre as tabelas usuarios e permissoes esta sendo concretizado em usuarios_permissoes
+        as: 'usuario_permissoes',
+        foreignKey: 'usuario_id'
+      })
     }
   }
   usuarios.init({
