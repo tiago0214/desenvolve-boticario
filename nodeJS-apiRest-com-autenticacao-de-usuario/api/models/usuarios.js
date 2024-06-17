@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       usuarios.belongsToMany(models.roles,{
-        through: models.usuarios_roles,
+        through: models.usuarios_role,
         as: 'usuario_roles',
         foreignKey: 'usuario_id' 
       });
