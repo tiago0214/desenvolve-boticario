@@ -1,4 +1,4 @@
-const { verify,decode } = require('jsonwebtoken');
+const { verify, decode } = require('jsonwebtoken');
 const jsonSecret = require('../config/jsonSecret.js');
 
 module.exports = async (req,res,next)=>{
